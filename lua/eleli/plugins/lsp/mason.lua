@@ -4,6 +4,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
+	opts = { ensure_installed = { "goimports", "gofumpt", "gomodifytags", "impl", "delve" } },
 	config = function()
 		-- import mason
 		local mason = require("mason")
