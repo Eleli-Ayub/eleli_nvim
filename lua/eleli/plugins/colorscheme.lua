@@ -1,18 +1,78 @@
 return {
-  "folke/tokyonight.nvim",
-  lazy = true,
-  opts = { style = "moon" },
+	{
+		"maxmx03/dracula.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			---@type dracula
+			local dracula = require("dracula")
 
-  -- Define custom highlights for Pmenu and Lazy menu
-  config = function()
-    vim.api.nvim_exec([[
-      highlight Pmenu guibg=#2e3440 guifg=#d8dee9
-      highlight PmenuSel guibg=#3b4252 guifg=#88c0d0
-      highlight PmenuSbar guibg=#434c5e
-      highlight PmenuThumb guibg=#4c566a
-      highlight LazyNormal guibg=#3b4252 guifg=#d8dee9
-      highlight LazyBorder guibg=#2e3440 guifg=#88c0d0
-    ]], false)
-  end,
+			dracula.setup({
+				styles = {
+					Type = {},
+					Function = {},
+					Parameter = {},
+					Property = {},
+					Comment = {},
+					String = {},
+					Keyword = {},
+					Identifier = {},
+					Constant = {},
+				},
+				transparent = true,
+				on_colors = function(colors, color)
+					---@type dracula.palette
+					return {
+						-- override or create new colors
+						mycolor = "#ffffff",
+						-- mycolor = 0xffffff,
+					}
+				end,
+				on_highlights = function(colors, color)
+					---@type dracula.highlights
+					return {
+						---@type vim.api.keyset.highlight
+						Normal = { fg = colors.mycolor },
+					}
+				end,
+				plugins = {
+					["nvim-treesitter"] = true,
+					["rainbow-delimiters"] = true,
+					["nvim-lspconfig"] = true,
+					["nvim-navic"] = true,
+					["nvim-cmp"] = true,
+					["indent-blankline.nvim"] = true,
+					["neo-tree.nvim"] = true,
+					["nvim-tree.lua"] = true,
+					["which-key.nvim"] = true,
+					["dashboard-nvim"] = true,
+					["gitsigns.nvim"] = true,
+					["neogit"] = true,
+					["todo-comments.nvim"] = true,
+					["lazy.nvim"] = true,
+					["telescope.nvim"] = true,
+					["noice.nvim"] = true,
+					["hop.nvim"] = true,
+					["mini.statusline"] = true,
+					["mini.tabline"] = true,
+					["mini.starter"] = true,
+					["mini.cursorword"] = true,
+					["bufferline.nvim"] = true,
+				},
+			})
+			vim.cmd.colorscheme("dracula")
+			vim.cmd.colorscheme("dracula-soft")
+		end,
+	},
+	{
+		"nvim-lualine/lualine.nvim",
+		opts = {
+			options = {
+				theme = vim.g.colors_name,
+				refresh = {
+					statusline = 1000,
+				},
+			},
+		},
+	},
 }
-
