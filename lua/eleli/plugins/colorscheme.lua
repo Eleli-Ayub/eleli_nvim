@@ -1,78 +1,53 @@
 return {
-	{
-		"maxmx03/dracula.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			---@type dracula
-			local dracula = require("dracula")
 
-			dracula.setup({
-				styles = {
-					Type = {},
-					Function = {},
-					Parameter = {},
-					Property = {},
-					Comment = {},
-					String = {},
-					Keyword = {},
-					Identifier = {},
-					Constant = {},
-				},
-				transparent = true,
-				on_colors = function(colors, color)
-					---@type dracula.palette
-					return {
-						-- override or create new colors
-						mycolor = "#ffffff",
-						-- mycolor = 0xffffff,
-					}
-				end,
-				on_highlights = function(colors, color)
-					---@type dracula.highlights
-					return {
-						---@type vim.api.keyset.highlight
-						Normal = { fg = colors.mycolor },
-					}
-				end,
-				plugins = {
-					["nvim-treesitter"] = true,
-					["rainbow-delimiters"] = true,
-					["nvim-lspconfig"] = true,
-					["nvim-navic"] = true,
-					["nvim-cmp"] = true,
-					["indent-blankline.nvim"] = true,
-					["neo-tree.nvim"] = true,
-					["nvim-tree.lua"] = true,
-					["which-key.nvim"] = true,
-					["dashboard-nvim"] = true,
-					["gitsigns.nvim"] = true,
-					["neogit"] = true,
-					["todo-comments.nvim"] = true,
-					["lazy.nvim"] = true,
-					["telescope.nvim"] = true,
-					["noice.nvim"] = true,
-					["hop.nvim"] = true,
-					["mini.statusline"] = true,
-					["mini.tabline"] = true,
-					["mini.starter"] = true,
-					["mini.cursorword"] = true,
-					["bufferline.nvim"] = true,
-				},
-			})
-			vim.cmd.colorscheme("dracula")
-			vim.cmd.colorscheme("dracula-soft")
-		end,
-	},
-	{
-		"nvim-lualine/lualine.nvim",
-		opts = {
-			options = {
-				theme = vim.g.colors_name,
-				refresh = {
-					statusline = 1000,
-				},
+	"catppuccin/nvim",
+	lazy = true,
+	name = "catppuccin",
+	opts = {
+		lsp_styles = {
+			underlines = {
+				errors = { "undercurl" },
+				hints = { "undercurl" },
+				warnings = { "undercurl" },
+				information = { "undercurl" },
 			},
+		},
+		integrations = {
+			aerial = true,
+			alpha = true,
+			cmp = true,
+			dashboard = true,
+			flash = true,
+			fzf = true,
+			grug_far = true,
+			gitsigns = true,
+			headlines = true,
+			illuminate = true,
+			indent_blankline = { enabled = true },
+			leap = true,
+			lsp_trouble = true,
+			mason = true,
+			mini = true,
+			navic = { enabled = true, custom_bg = "lualine" },
+			neotest = true,
+			neotree = true,
+			noice = true,
+			notify = true,
+			snacks = true,
+			telescope = true,
+			treesitter_context = true,
+			which_key = true,
+		},
+	},
+	specs = {
+		{
+			"akinsho/bufferline.nvim",
+			optional = true,
+			opts = function(_, opts)
+				if (vim.g.colors_name or ""):find("catppuccin") then
+					opts.highlights = require("catppuccin.special.bufferline").get_theme()
+				end
+			end,
 		},
 	},
 }
