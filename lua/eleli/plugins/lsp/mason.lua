@@ -22,27 +22,5 @@ return {
 				},
 			},
 		})
-
-		mason_lspconfig.setup({
-			ensure_installed = {
-				"gopls",
-				"html",
-				"cssls",
-				"tailwindcss",
-				"svelte",
-				"lua_ls",
-				"graphql",
-				"emmet_ls",
-				"prismals",
-			},
-		})
-
-		mason_tool_installer.setup({
-			ensure_installed = {
-				"prettier", -- prettier formatter
-				"stylua", -- lua formatter
-				"eslint_d", -- js linter
-			},
-		})
 	end,
 }
