@@ -21,7 +21,11 @@ return {
         enable = true,
       },
       -- ensure these language parsers are installed
-      ensure_installed = {
+      ensure_installed = { 
+        "go", 
+        "gomod", 
+        "gowork", 
+        "gosum",
         "json",
         "javascript",
         "typescript",

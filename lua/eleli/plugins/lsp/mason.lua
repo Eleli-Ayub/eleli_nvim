@@ -4,7 +4,17 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
-	opts = { ensure_installed = { "goimports", "gofumpt", "gomodifytags", "impl", "delve", "golangci-lint" } },
+	opts = {
+    ensure_installed = {
+      "goimports",
+      "gofumpt", 
+      "gomodifytags", 
+      "gopls",
+      "impl", 
+      "delve", 
+      "golangci-lint" 
+    }
+  },
 	config = function()
 		-- import mason
 		local mason = require("mason")

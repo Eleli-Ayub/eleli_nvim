@@ -1,8 +1,8 @@
 return {
 
-	"catppuccin/nvim",
+	"ellisonleao/gruvbox.nvim",
 	lazy = true,
-	name = "catppuccin",
+	name = "gruvbox",
 	opts = {
 		lsp_styles = {
 			underlines = {
