@@ -1,53 +1,34 @@
 return {
-
-	"ellisonleao/gruvbox.nvim",
-	lazy = true,
-	name = "gruvbox",
-	opts = {
-		lsp_styles = {
-			underlines = {
-				errors = { "undercurl" },
-				hints = { "undercurl" },
-				warnings = { "undercurl" },
-				information = { "undercurl" },
-			},
-		},
-		integrations = {
-			aerial = true,
-			alpha = true,
-			cmp = true,
-			dashboard = true,
-			flash = true,
-			fzf = true,
-			grug_far = true,
-			gitsigns = true,
-			headlines = true,
-			illuminate = true,
-			indent_blankline = { enabled = true },
-			leap = true,
-			lsp_trouble = true,
-			mason = true,
-			mini = true,
-			navic = { enabled = true, custom_bg = "lualine" },
-			neotest = true,
-			neotree = true,
-			noice = true,
-			notify = true,
-			snacks = true,
-			telescope = true,
-			treesitter_context = true,
-			which_key = true,
-		},
-	},
-	specs = {
-		{
-			"akinsho/bufferline.nvim",
-			optional = true,
-			opts = function(_, opts)
-				if (vim.g.colors_name or ""):find("catppuccin") then
-					opts.highlights = require("catppuccin.special.bufferline").get_theme()
-				end
-			end,
-		},
-	},
+  "rebelot/kanagawa.nvim",
+  lazy = false,
+  priority = 1000,
+  name = "kanagawa",
+  opts = {
+    theme = "wave", -- wave, dragon, lotus
+    background = {
+      dark = "wave",
+      light = "lotus",
+    },
+    styles = {
+      functions = { bold = true },
+      keywords = { italic = true },
+    },
+    integrations = {
+      gitsigns = true,
+      telescope = true,
+      indent_blankline = { enabled = true },
+      mason = true,
+      mini = true,
+      noice = true,
+      notify = true,
+      treesitter = true,
+      which_key = true,
+      lsp_trouble = true,
+      neotree = true,
+    },
+  },
+  config = function(_, opts)
+    require("kanagawa").setup(opts)
+    vim.cmd("colorscheme kanagawa")
+  end,
 }
